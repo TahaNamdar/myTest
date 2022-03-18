@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { DoFetch } from "./API/Fetch";
+
+import { useDispatch } from "react-redux";
+import User from "./Screen/User";
 
 function App() {
+  const url = "https://jsonplaceholder.typicode.com/users";
+
+  const disptach = useDispatch();
+
+  const handleClick = () => {
+    disptach(DoFetch(url));
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <br />
+      <button onClick={handleClick}>Get User</button>
+      <br />
+      <br />
+      <User />
     </div>
   );
 }
